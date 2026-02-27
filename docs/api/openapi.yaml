@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: MES Tanzania School SaaS API
+  version: 1.0.0
+servers:
+  - url: /api/v1
+paths:
+  /auth/login:
+    post:
+      summary: Login
+  /auth/register-school:
+    post:
+      summary: Register new tenant school
+  /tenants:
+    get:
+      summary: List tenants (SaaS owner)
+  /students:
+    post:
+      summary: Create student
+    get:
+      summary: List students
+  /results/compute:
+    post:
+      summary: Compute class or exam results
+  /payments/webhook/{provider}:
+    post:
+      summary: Provider webhook endpoint
+      parameters:
+        - in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+            enum: [nmb, nbc, crdb, mpesa, airtel-money, tigo-pesa]
+  /reports/report-card/{studentId}:
+    get:
+      summary: Generate student report card PDF
+      parameters:
+        - in: path
+          name: studentId
+          required: true
+          schema:
+            type: string
